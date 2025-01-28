@@ -29,10 +29,11 @@ int main() {
     Carta cartas[32]; // Total de 32 cartas (8 estados x 4 cidades por estado)
     int totalCartas = 0;
     int opcao = 0;
+    char opcaoContinuar = 'S';
 
     printf("Bem-vindo ao sistema Super Trunfo de Países!\n\n");
 
-    while(opcao != 9){
+    while(opcao != 9){ // Menu de Opções
         printf("\nEscolha sua Opção\n");
         printf("1 - Cadastrar Cartas\n");
         printf("2 - Exibir Cartas\n");
@@ -40,7 +41,8 @@ int main() {
         scanf(" %d", &opcao);
 
         if(opcao == 1){ //Cadastrar Cartas
-            while (totalCartas < 32) {
+            opcaoContinuar = 'S';
+            while ((totalCartas < 32) && (opcaoContinuar != 'N' && opcaoContinuar != 'n') ) {
                 Carta novaCarta;
 
                 printf("\n--- Cadastro de Carta %d ---\n", totalCartas + 1);
@@ -80,20 +82,16 @@ int main() {
                 exibirCarta(novaCarta);
 
                 // Perguntar se o usuário deseja continuar cadastrando
-                char opcao;
                 printf("Deseja cadastrar outra carta? (S/N): ");
-                scanf(" %c", &opcao);
-
-                if (opcao == 'N' || opcao == 'n') {
-                    break;
-                }
+                scanf(" %c", &opcaoContinuar);
             }
 
             if(totalCartas >=32){
                 printf("\nLimite de cartas atingido (32 cartas).\n");
             }
-
-            printf("\nTotal de cartas cadastradas: %d\n", totalCartas);
+            else{
+                printf("\nTotal de cartas cadastradas: %d\n", totalCartas);
+            }
         }
 
         if(opcao == 2){// Exibição de todas as cartas cadastradas
